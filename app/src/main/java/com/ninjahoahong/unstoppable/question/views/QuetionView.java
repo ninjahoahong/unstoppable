@@ -63,7 +63,7 @@ public class QuetionView extends FrameLayout implements QuestionContract.View {
     Button answerButton4;
 
     @Inject
-    QuestionContract.Presenter schedulePresenter;
+    QuestionContract.Presenter questionPresenter;
 
     private ResultsItem currentQuestion;
 
@@ -93,13 +93,13 @@ public class QuetionView extends FrameLayout implements QuestionContract.View {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        schedulePresenter.register();
+        questionPresenter.register();
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        schedulePresenter.unregister();
+        questionPresenter.unregister();
     }
 
     @Override
@@ -160,7 +160,7 @@ public class QuetionView extends FrameLayout implements QuestionContract.View {
     private void chooseAnwser(Button answerButton) {
         if (currentQuestion != null) {
             if (answerButton.getText().equals(Html.fromHtml(currentQuestion.correctAnswer()))) {
-                schedulePresenter.loadQuestions();
+                questionPresenter.loadQuestions();
             }
         } else {
 
@@ -169,7 +169,7 @@ public class QuetionView extends FrameLayout implements QuestionContract.View {
 
     @Override
     public void presenter(@NonNull QuestionContract.Presenter presenter) {
-        schedulePresenter = checkNotNull(presenter);
+        questionPresenter = checkNotNull(presenter);
     }
 
 
