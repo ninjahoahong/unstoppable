@@ -1,6 +1,5 @@
 package com.ninjahoahong.unstoppable.question;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.ninjahoahong.unstoppable.data.models.Question;
@@ -21,17 +20,14 @@ public class QuestionPresenter implements QuestionContract.Presenter {
     private final CompositeDisposable compositeDisposable;
     private final QuestionRepository questionRepository;
     private final BaseSchedulerProvider schedulerProvider;
-    private final Context context;
 
     @Inject
     public QuestionPresenter(@NonNull QuestionRepository questionRepository,
                              @NonNull QuestionContract.View questionView,
-                             @NonNull BaseSchedulerProvider schedulerProvider,
-                             @NonNull Context context) {
+                             @NonNull BaseSchedulerProvider schedulerProvider) {
         this.questionRepository = questionRepository;
         this.questionView = questionView;
         this.schedulerProvider = schedulerProvider;
-        this.context = context;
         compositeDisposable = new CompositeDisposable();
     }
 

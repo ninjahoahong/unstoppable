@@ -24,7 +24,7 @@ public class QuestionModule {
                                                 BaseSchedulerProvider baseSchedulerProvider,
                                                 Context context) {
         return new QuestionPresenter(questionRepository, view,
-                baseSchedulerProvider, context);
+                baseSchedulerProvider);
     }
 
     @Provides

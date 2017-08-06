@@ -20,8 +20,8 @@ public class ForceUpdateChecker {
     public static final String KEY_CURRENT_VERSION = "force_update_current_version";
     public static final String KEY_UPDATE_URL = "force_update_store_url";
 
-    private OnUpdateNeededListener onUpdateNeededListener;
-    private Context context;
+    private final OnUpdateNeededListener onUpdateNeededListener;
+    private final Context context;
 
     public interface OnUpdateNeededListener {
         void onUpdateNeeded(String updateUrl);
@@ -69,7 +69,7 @@ public class ForceUpdateChecker {
 
     public static class Builder {
 
-        private Context context;
+        private final Context context;
         private OnUpdateNeededListener onUpdateNeededListener;
 
         public Builder(Context context) {
