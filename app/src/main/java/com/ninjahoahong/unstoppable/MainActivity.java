@@ -37,11 +37,15 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        ForceUpdateChecker.with(this).onUpdateNeeded(this).check();
-
         setSupportActionBar(toolbar);
         Navigator.configure().setStateChanger(DefaultStateChanger.create(this, appContainer))
                 .install(this, appContainer, HistoryBuilder.single(QuestionViewKey.create()));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ForceUpdateChecker.with(this).onUpdateNeeded(this).check();
     }
 
     @Override
@@ -79,6 +83,7 @@ public class MainActivity extends AppCompatActivity
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle("New version available")
                 .setMessage("Please, update app to new version to continue reposting.")
+                .setCancelable(false)
                 .setPositiveButton("Update",
                         (dialog1, which) -> redirectStore(updateUrl)).setNegativeButton("No, thanks",
                         (dialog12, which) -> finish()).create();
