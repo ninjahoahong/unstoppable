@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Unstoppable</string>
     <string name="empty_view_string">No Questions</string>
+    <string name="button_play">Play</string>
 </resources>
