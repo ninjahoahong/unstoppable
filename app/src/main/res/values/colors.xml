@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="color_error_text">#FF0000</color>
     <color name="color_header_background">#8A00AAFF</color>
+    <color name="splash_background">@android:color/darker_gray</color>
 </resources>

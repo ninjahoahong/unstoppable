@@ -4,7 +4,7 @@
        android:layout_height="match_parent">
 
     <ProgressBar
-        android:id="@+id/view_loading"
+        android:id="@+id/loadingView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
