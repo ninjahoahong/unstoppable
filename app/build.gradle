@@ -97,7 +97,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.71"
@@ -123,4 +123,5 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
     implementation 'io.realm:android-adapters:3.0.0'
+    implementation 'com.github.vivchar:ViewPagerIndicator:1.1.0'
 }

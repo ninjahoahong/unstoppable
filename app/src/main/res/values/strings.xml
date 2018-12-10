@@ -1,5 +1,20 @@
 <resources>
     <string name="app_name">Unstoppable</string>
     <string name="empty_view_string">No Questions</string>
+
+    <!-- Home -->
     <string name="button_play">Play</string>
+    <string name="button_play_text">Press the button to start playing.</string>
+
+    <!-- Onboarding -->
+    <string name="first">First</string>
+    <string name="second">Second</string>
+    <string name="third">Third</string>
+    <string name="skip_button">Skip</string>
+    <string name="onboarding_view_1_text">testing your knowledge with challenging questions</string>
+    <string name="onboarding_view_2_text">pay attention to timer</string>
+    <string name="onboarding_view_3_text">get the correct streak to get more chances</string>
+    <!-- /Onboarding -->
+
+    <!-- /Home -->
 </resources>
