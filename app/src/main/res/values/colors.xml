@@ -6,4 +6,6 @@
     <color name="color_error_text">#FF0000</color>
     <color name="color_header_background">#8A00AAFF</color>
     <color name="splash_background">@android:color/darker_gray</color>
+    <color name="green_dark">#1D9A58</color>
+    <color name="green_light">#41AA54</color>
 </resources>

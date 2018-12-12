@@ -21,4 +21,23 @@
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
 
+    <style name="OnBoardingText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_marginLeft">32dp</item>
+        <item name="android:layout_marginRight">32dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="QuestionButton" parent="TextAppearance.AppCompat">
+        <item name="android:background">@drawable/question_button_state</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
