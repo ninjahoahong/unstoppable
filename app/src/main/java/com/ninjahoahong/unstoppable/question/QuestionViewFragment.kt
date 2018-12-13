@@ -1,6 +1,7 @@
 package com.ninjahoahong.unstoppable.question
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.support.v4.content.ContextCompat
 import android.text.Html
@@ -21,6 +22,8 @@ import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.android.synthetic.main.fragment_question.*
 import kotlinx.android.synthetic.main.question_view.button_answer1
 import kotlinx.android.synthetic.main.view_loading.*
+import java.util.Locale
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class QuestionViewFragment : BaseFragment() {
@@ -38,6 +41,7 @@ class QuestionViewFragment : BaseFragment() {
 
     private var indexOfContentView: Int = 0
     private var indexOfLoadingView: Int = 0
+    private var timer = timer(30000, 1000)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -70,6 +74,7 @@ class QuestionViewFragment : BaseFragment() {
                     currentAnswers.shuffle()
                     resetAllButtonStyles()
                     setAnswers(currentAnswers)
+                    timer.start()
                 },
                 onError = {
                     it.printStackTrace()
@@ -110,6 +115,7 @@ class QuestionViewFragment : BaseFragment() {
 
     override fun onDestroyView() {
         compositeDisposable.clearIfNotDisposed()
+        timer.cancel()
         super.onDestroyView()
     }
 
@@ -152,4 +158,26 @@ class QuestionViewFragment : BaseFragment() {
             }
         }
     }
+
+
+    private fun timer(millisInFuture:Long, countDownInterval:Long):CountDownTimer{
+        return object: CountDownTimer(millisInFuture,countDownInterval){
+            override fun onTick(millisUntilFinished: Long){
+                val timeRemaining = String.format(
+                    Locale.getDefault(), "" +
+                    "%02d",
+                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished))
+                questionTimer.text = timeRemaining
+            }
+
+            override fun onFinish() {
+                disableAllButtons()
+                highlightCorrectAnswer()
+                Handler().postDelayed({
+                    loadQuestion()
+                }, 1000)
+            }
+        }
+    }
 }
+
