@@ -15,13 +15,21 @@ import com.ninjahoahong.unstoppable.R
 import com.ninjahoahong.unstoppable.api.AppService
 import com.ninjahoahong.unstoppable.data.responses.ResultsItem
 import com.ninjahoahong.unstoppable.utils.SchedulerProvider
+import com.ninjahoahong.unstoppable.utils.Settings
 import com.ninjahoahong.unstoppable.utils.clearIfNotDisposed
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
-import kotlinx.android.synthetic.main.fragment_question.*
-import kotlinx.android.synthetic.main.question_view.button_answer1
-import kotlinx.android.synthetic.main.view_loading.*
+import kotlinx.android.synthetic.main.fragment_question.buttonAnswer1
+import kotlinx.android.synthetic.main.fragment_question.buttonAnswer2
+import kotlinx.android.synthetic.main.fragment_question.buttonAnswer3
+import kotlinx.android.synthetic.main.fragment_question.buttonAnswer4
+import kotlinx.android.synthetic.main.fragment_question.questionContainer
+import kotlinx.android.synthetic.main.fragment_question.questionTimer
+import kotlinx.android.synthetic.main.fragment_question.tvQuestion
+import kotlinx.android.synthetic.main.fragment_question.tvScoreDisplay
+import kotlinx.android.synthetic.main.fragment_question.viewAnimator
+import kotlinx.android.synthetic.main.view_loading.loadingView
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -42,6 +50,7 @@ class QuestionViewFragment : BaseFragment() {
     private var indexOfContentView: Int = 0
     private var indexOfLoadingView: Int = 0
     private var timer = timer(30000, 1000)
+    private var currentStreak: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -66,6 +75,7 @@ class QuestionViewFragment : BaseFragment() {
             .subscribeBy(
                 onNext = {
                     println("onNext!")
+                    tvScoreDisplay.text = "${Settings[activity!!, Settings.LONGEST_STREAK]}/${currentStreak}"
                     currentQuestion = it.results[0]
                     tvQuestion.text = Html.fromHtml(currentQuestion.question)
                     val currentAnswers = ArrayList<String>(4)
@@ -108,7 +118,7 @@ class QuestionViewFragment : BaseFragment() {
         for (i in 0..upperLimit) {
             val child = questionContainer.getChildAt(i)
             if (child is Button) {
-                chooseAnwser(child)
+                chooseAnswer(child)
             }
         }
     }
@@ -116,16 +126,26 @@ class QuestionViewFragment : BaseFragment() {
     override fun onDestroyView() {
         compositeDisposable.clearIfNotDisposed()
         timer.cancel()
+        resetStreak()
         super.onDestroyView()
     }
 
-    private fun chooseAnwser(answerButton: Button) {
+    private fun resetStreak() {
+        if (currentStreak > Settings[activity!!, Settings.LONGEST_STREAK]!!.toInt()) {
+            Settings[activity!!, Settings.LONGEST_STREAK] = currentStreak.toString()
+        }
+        currentStreak = 0
+    }
+
+    private fun chooseAnswer(answerButton: Button) {
         answerButton.setOnClickListener {
             disableAllButtons()
             if (currentQuestion != null) {
                 if (answerButton.text == Html.fromHtml(currentQuestion.correctAnswer)) {
+                    ++currentStreak
                     loadQuestion()
                 } else {
+                    resetStreak()
                     answerButton.setTextColor(ContextCompat.getColor(
                         activity!!, android.R.color.holo_red_dark))
                     highlightCorrectAnswer()

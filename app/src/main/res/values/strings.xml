@@ -13,8 +13,13 @@
     <string name="skip_button">Skip</string>
     <string name="onboarding_view_1_text">testing your knowledge with challenging questions</string>
     <string name="onboarding_view_2_text">pay attention to timer</string>
-    <string name="onboarding_view_3_text">get the correct streak to get more chances</string>
+    <string name="onboarding_view_3_text">strike for the longest streak</string>
     <!-- /Onboarding -->
 
     <!-- /Home -->
+
+    <!-- Question View -->
+    <string name="label_score">Longest / Current Streak</string>
+    <string name="initial_score">0/0</string>
+    <!-- /Question View -->
 </resources>
