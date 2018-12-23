@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import com.ninjahoahong.unstoppable.home.HomeKey
 import com.ninjahoahong.unstoppable.utils.BaseKey
 import com.ninjahoahong.unstoppable.utils.FragmentStateChanger
+import com.ninjahoahong.unstoppable.utils.Settings
 import com.zhuinden.simplestack.BackstackDelegate
 import com.zhuinden.simplestack.History
 import com.zhuinden.simplestack.StateChange
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity(), StateChanger {
             lastCustomNonConfigurationInstance,
             History.single(HomeKey()))
         backstackDelegate.registerForLifecycleCallbacks(this)
+        Settings.setDefaultsIfNotSet(this)
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)

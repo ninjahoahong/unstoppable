@@ -2,7 +2,6 @@ package com.ninjahoahong.unstoppable.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import com.google.gson.GsonBuilder
 
 class Settings {
@@ -11,10 +10,16 @@ class Settings {
         private val DEFAULTS = arrayListOf<Setting>()
         private const val IDENTIFIER = "unstoppable_preferences"
         const val FIRST_TIME_PLAY = "FirstTimePlay"
+        const val LONGEST_STREAK = "LongestStreak"
         init {
             DEFAULTS.add(object : Setting(FIRST_TIME_PLAY, false, Boolean::class.java) {
                 override fun createDescription(context: Context): String? {
-                    return null
+                    return "Is the user using the application the first time."
+                }
+            })
+            DEFAULTS.add(object : Setting(LONGEST_STREAK, "0", String::class.java) {
+                override fun createDescription(context: Context): String? {
+                    return "This is the most number of questions being answered correctly in a row."
                 }
             })
         }
