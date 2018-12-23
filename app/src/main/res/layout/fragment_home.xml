@@ -7,19 +7,24 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
+        android:background="@color/silver"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
+            style="@style/OnBoardingText"
+            android:id="@+id/introText"
+            android:gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_play_text"/>
-
+            android:layout_height="wrap_content"/>
 
         <Button
+            android:layout_gravity="center"
+            style="@style/QuestionButton"
             android:id="@+id/loadGameButton"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/button_play"/>
 
