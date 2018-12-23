@@ -1,6 +1,8 @@
 package com.ninjahoahong.unstoppable.home
 
 import android.os.Bundle
+import android.text.Html
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +13,7 @@ import com.ninjahoahong.unstoppable.home.onboarding.OnBoardingPagerAdapter
 import com.ninjahoahong.unstoppable.question.QuestionViewKey
 import com.ninjahoahong.unstoppable.utils.Settings
 import kotlinx.android.synthetic.main.fragment_home.continueButton
+import kotlinx.android.synthetic.main.fragment_home.introText
 import kotlinx.android.synthetic.main.fragment_home.loadGameButton
 import kotlinx.android.synthetic.main.fragment_home.onBoardingView
 import kotlinx.android.synthetic.main.fragment_home.onBoardingViewsContainer
@@ -27,6 +30,14 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showOnboardingView(Settings.isNot(view.context, Settings.FIRST_TIME_PLAY))
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            introText.text = Html.fromHtml(
+                getString(R.string.intro_text), Html.FROM_HTML_MODE_LEGACY)
+        } else {
+            @Suppress("DEPRECATION")
+            introText.text = Html.fromHtml(getString(R.string.intro_text))
+        }
+        introText.movementMethod = LinkMovementMethod.getInstance()
         loadGameButton.onClick { MainActivity[view.context].navigateTo(QuestionViewKey()); }
     }
 

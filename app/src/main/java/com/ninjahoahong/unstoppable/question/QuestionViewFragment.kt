@@ -142,9 +142,11 @@ class QuestionViewFragment : BaseFragment() {
             disableAllButtons()
             if (currentQuestion != null) {
                 if (answerButton.text == Html.fromHtml(currentQuestion.correctAnswer)) {
+                    timer.cancel()
                     ++currentStreak
                     loadQuestion()
                 } else {
+                    timer.cancel()
                     resetStreak()
                     answerButton.setTextColor(ContextCompat.getColor(
                         activity!!, android.R.color.holo_red_dark))

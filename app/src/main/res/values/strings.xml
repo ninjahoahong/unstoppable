@@ -4,7 +4,12 @@
 
     <!-- Home -->
     <string name="button_play">Play</string>
-    <string name="button_play_text">Press the button to start playing.</string>
+    <string
+        name="intro_text"><![CDATA[ Unstoppable is an open-source trivia game using question bank in
+        <a href="https://opentdb.com/">OPEN TRIVIA DATABASE</a>.
+        You can find and give a star to the project in <a href="https://gitlab.com/ninjahoahong/unstoppable">gitlab</a>
+        or <a href="https://github.com/ninjahoahong/unstoppable">github</a>.
+        <br/> <medium> Press the button to start playing. </medium>]]> </string>
 
     <!-- Onboarding -->
     <string name="first">First</string>
